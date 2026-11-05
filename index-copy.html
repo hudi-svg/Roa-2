@@ -1,0 +1,1058 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111210">
+  <meta name="description" content="ROA D1 brings every room system into one intuitive experience. Beautifully Unnoticeable.">
+
+  <title>ROA Solutions — The Room, Without the Complexity</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#111210',
+            graphite: '#20211F',
+            paper: '#F3F2EE',
+            muted: '#8B8B85',
+            accent: '#C7A77B'
+          },
+          fontFamily: {
+            sans: ['DM Sans', 'sans-serif'],
+            display: ['Manrope', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: #111210;
+      color: #F3F2EE;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .display-font { font-family: 'Manrope', sans-serif; }
+
+    ::selection {
+      background: #C7A77B;
+      color: #111210;
+    }
+
+    .eyebrow {
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .frame {
+      position: relative;
+    }
+
+    .frame::before,
+    .frame::after {
+      content: "";
+      position: absolute;
+      width: 35px;
+      height: 35px;
+      pointer-events: none;
+    }
+
+    .frame::before {
+      top: 0;
+      left: 0;
+      border-top: 1px solid currentColor;
+      border-left: 1px solid currentColor;
+    }
+
+    .frame::after {
+      bottom: 0;
+      right: 0;
+      border-bottom: 1px solid currentColor;
+      border-right: 1px solid currentColor;
+    }
+
+    .hero-overlay {
+      background: linear-gradient(
+        90deg,
+        rgba(12,13,12,.96) 0%,
+        rgba(12,13,12,.78) 44%,
+        rgba(12,13,12,.24) 72%,
+        rgba(12,13,12,0) 100%
+      );
+    }
+
+    .cinematic-image {
+      filter: brightness(.82) saturate(.78);
+      transform: scale(1.025);
+    }
+
+    .image-overlay {
+      background: linear-gradient(
+        0deg,
+        rgba(0,0,0,.55),
+        transparent 65%
+      );
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .product-tab.active {
+      background: #C7A77B;
+      color: #111210;
+      border-color: #C7A77B;
+    }
+
+    .product-tab:not(.active):hover {
+      border-color: rgba(199,167,123,.65);
+    }
+
+    .product-image {
+      transition: opacity .3s ease;
+    }
+
+    .nav-link {
+      transition: color .2s ease;
+    }
+
+    .nav-link:hover { color: #C7A77B; }
+
+    .gold-line {
+      width: 38px;
+      height: 1px;
+      background: #C7A77B;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .hero-overlay {
+        background: linear-gradient(
+          0deg,
+          rgba(12,13,12,.97),
+          rgba(12,13,12,.72)
+        );
+      }
+
+      .frame::before,
+      .frame::after {
+        width: 22px;
+        height: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+
+  <!-- =========================================
+       HEADER
+       ========================================= -->
+
+  <header class="fixed top-0 left-0 w-full z-50 bg-ink/90 backdrop-blur-xl border-b border-white/10">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 h-[76px] flex items-center justify-between">
+
+      <a href="#home" class="flex items-center text-white" aria-label="ROA Solutions home">
+        <img src="logo%20roa.png"
+             alt="ROA Solutions"
+             class="h-12 w-auto object-contain">
+      </a>
+
+      <!-- Desktop navigation -->
+      <nav class="hidden md:flex items-center gap-9 text-[12px] text-white/65">
+        <a class="nav-link" href="#product">Product</a>
+        <a class="nav-link" href="#experience">Experience</a>
+        <a class="nav-link" href="#integration">Integration</a>
+        <a class="nav-link" href="#hospitality">Hospitality</a>
+      </nav>
+
+      <a href="#contact"
+         class="hidden md:inline-flex items-center gap-3 border border-white/30 px-5 py-3 text-[10px] tracking-[.12em] uppercase text-white hover:bg-white hover:text-ink transition">
+        Talk to ROA
+        <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+      </a>
+
+      <!-- Mobile menu button -->
+      <button id="menuToggle"
+              aria-label="Open navigation"
+              aria-expanded="false"
+              class="md:hidden text-white p-2">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Mobile navigation -->
+    <nav id="mobileMenu" class="hidden md:hidden bg-ink border-t border-white/10 px-6 py-6">
+      <div class="flex flex-col gap-6 text-sm text-white/75">
+        <a href="#product" class="mobile-link">Product</a>
+        <a href="#experience" class="mobile-link">Experience</a>
+        <a href="#integration" class="mobile-link">Integration</a>
+        <a href="#hospitality" class="mobile-link">Hospitality</a>
+        <a href="#contact" class="mobile-link text-accent">Talk to ROA ↗</a>
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- =========================================
+       01. HERO — DARK CINEMATIC
+       ========================================= -->
+
+  <section id="home" class="relative min-h-[760px] md:min-h-[850px] bg-ink text-white flex items-center overflow-hidden">
+
+    <!-- IMAGE 01 — HERO BACKGROUND
+         Search keywords:
+         "luxury executive boardroom panoramic city skyline at night"
+         "cinematic dark modern corporate conference room architectural photography"
+         Choose: wide 16:9 landscape, realistic photography,
+         dark interior, panoramic windows, premium atmosphere.
+         Avoid: people facing camera, excessive decoration, visible brand logos.
+         Recommended size: 2400 x 1400 px.
+    -->
+    <img      src="hero-boardroom-copy.jpg"
+      alt="A premium executive boardroom overlooking the city"
+      class="cinematic-image absolute inset-0 w-full h-full object-cover object-center"
+      fetchpriority="high"
+    >
+
+    <div class="absolute inset-0 hero-overlay"></div>
+    <div class="absolute inset-0 bg-ink/10"></div>
+
+    <div class="relative z-10 max-w-[1440px] mx-auto w-full px-6 lg:px-16 pt-32 pb-24">
+
+      <div class="max-w-[700px] reveal">
+
+        <div class="flex items-center gap-4 mb-9">
+          <span class="gold-line"></span>
+          <span class="eyebrow text-white/65">ROA D1 · Room-human interface</span>
+        </div>
+
+        <h1 class="display-font text-5xl sm:text-6xl lg:text-[82px] leading-[1.04] font-semibold tracking-[-.055em]">
+          The Room.<br>
+          <span class="text-white/50">Without the</span><br>
+          Complexity.
+        </h1>
+
+        <p class="mt-8 max-w-[430px] text-white/65 text-sm md:text-base leading-7">
+          Every system in the room, brought together in one intuitive
+          experience. So you can focus on the meeting, not the technology.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-5 mt-10">
+          <a href="#product"
+             class="inline-flex items-center gap-4 bg-accent text-ink px-7 py-4 text-[11px] uppercase tracking-[.12em] font-semibold hover:bg-white transition">
+            Discover ROA D1
+            <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+          </a>
+
+          <a href="#experience"
+             class="text-white/70 hover:text-white text-xs flex items-center gap-2 transition">
+            Explore the experience
+            <i data-lucide="play-circle" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="absolute bottom-9 right-8 lg:right-16 hidden md:flex items-center gap-4 text-white/45">
+        <span class="eyebrow">Designed around people</span>
+        <span class="w-12 h-px bg-white/30"></span>
+        <span class="text-[10px]">01 / 06</span>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================
+       02. INTRODUCTION — DARK EDITORIAL
+       ========================================= -->
+
+  <section id="product" class="bg-[#151614] text-white py-24 md:py-36">
+
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12">
+
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+
+        <div class="lg:col-span-5 reveal">
+          <span class="eyebrow text-white/45">01 / Meet the product</span>
+
+          <h2 class="display-font text-4xl md:text-5xl font-semibold leading-[1.12] tracking-[-.045em] mt-7">
+            One unit.<br>
+            <span class="text-white/40">The whole room.</span>
+          </h2>
+
+          <div class="gold-line mt-8"></div>
+
+          <p class="text-sm md:text-base text-white/60 leading-8 mt-8">
+            ROA D1 is a single unit we design and build, containing the
+            matrix, the compute and everything else, running our software.
+          </p>
+
+          <p class="text-sm md:text-base text-white/60 leading-8 mt-4">
+            It brings the room's existing systems together, making
+            sophisticated technology feel natural to the people who use it.
+          </p>
+
+          <a href="#experience"
+             class="inline-flex items-center gap-4 mt-9 text-xs uppercase tracking-[.12em] font-semibold border-b border-white/30 pb-3 hover:border-accent transition">
+            See how it works
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <div class="lg:col-span-7 reveal">
+
+          <div class="relative bg-gradient-to-br from-[#292A27] to-[#191A18] border border-white/10 p-7 md:p-12 min-h-[300px] md:min-h-[430px] flex items-center justify-center overflow-hidden">
+
+            <!-- IMAGE 02 — ROA D1 HARDWARE RENDER
+                 Search / create keywords:
+                 "premium 1U rack mount AV matrix processor brushed black aluminum"
+                 "minimal industrial AV control hardware front panel product photography"
+                 IMPORTANT:
+                 The production chassis is not yet available in the brief.
+                 Use an illustrative hardware render based on approved specifications,
+                 not a fake photograph of the actual shipping product.
+                 Recommended size: 1400 x 900 px.
+            -->
+            <img
+              src="d1-hardware-render.PNG"
+              alt="ROA D1 hardware product concept"
+              class="w-full max-w-[680px] object-contain relative z-10"
+              loading="lazy"
+            >
+
+            <div class="absolute bottom-5 left-6 md:left-10 text-[9px] tracking-[.2em] text-white/45 uppercase">
+              ROA D1 / Hardware concept
+            </div>
+
+            <div class="absolute top-6 right-6 text-[9px] tracking-[.2em] text-white/35">
+              D-SERIES / 01
+            </div>
+
+          </div>
+
+          <div class="flex justify-between mt-5 text-[9px] uppercase tracking-[.15em] text-white/40">
+            <span>Engineered for the room</span>
+            <span>Designed by ROA</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================
+       03. EXPERIENCE — DARK INTERACTIVE SECTION
+       ========================================= -->
+
+  <section id="experience" class="bg-ink text-white py-24 md:py-32 overflow-hidden">
+
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12">
+
+      <div class="max-w-[650px] reveal">
+        <span class="eyebrow text-accent">02 / The experience</span>
+
+        <h2 class="display-font text-4xl md:text-6xl font-semibold leading-[1.1] tracking-[-.045em] mt-7">
+          The room follows<br>
+          <span class="text-white/40">your lead.</span>
+        </h2>
+
+        <p class="text-white/55 text-sm leading-7 mt-7 max-w-[480px]">
+          See every live source. Place anything on the wall.
+          Shape the room around the conversation.
+        </p>
+      </div>
+
+      <!-- Interactive product demo -->
+      <div class="mt-16 md:mt-20">
+
+        <div class="flex flex-wrap gap-2 mb-6" role="tablist" aria-label="Product experiences">
+
+          <button class="product-tab active border border-white/20 px-5 py-3 text-[10px] uppercase tracking-[.12em] transition"
+                  data-tab="canvas" role="tab" aria-selected="true">
+            Canvas
+          </button>
+
+          <button class="product-tab border border-white/20 px-5 py-3 text-[10px] uppercase tracking-[.12em] text-white/60 hover:text-white transition"
+                  data-tab="service" role="tab" aria-selected="false">
+            Service
+          </button>
+
+          <button class="product-tab border border-white/20 px-5 py-3 text-[10px] uppercase tracking-[.12em] text-white/60 hover:text-white transition"
+                  data-tab="presentation" role="tab" aria-selected="false">
+            Presentation
+          </button>
+
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-8 items-center">
+
+          <div class="lg:col-span-8">
+
+            <div class="relative bg-[#282B2D] border border-white/10 p-3 md:p-6">
+
+              <!-- IMAGE 03 — PRODUCT CANVAS
+                   Use supplied brief asset:
+                   live-app-canvas-detail-2026-07-30.jpg
+                   Shows Reel sources and Video Wall canvas.
+                   Remove or blur confidential names and camera content first.
+              -->
+              <img
+                id="demo-canvas"
+                src="live-app-canvas-detail-2026-07-30.png"
+                alt="ROA D1 live source and video wall interface"
+                class="product-image w-full object-contain"
+                loading="lazy"
+              >
+
+              <!-- IMAGE 04 — SERVICE INTERFACE
+                   Use supplied brief asset:
+                   live-app-service-orders-2026-07-30.png
+                   Shows hospitality ordering: karak, qahwa, coffee and water.
+              -->
+              <img
+                id="demo-service"
+                src="live-app-service-orders-2026-07-30.png"
+                alt="ROA hospitality service ordering interface"
+                class="product-image w-full object-contain hidden"
+                loading="lazy"
+              >
+
+              <!-- IMAGE 05 — PRESENTATION INTERFACE
+                   Use supplied brief asset:
+                   live-app-presenting-roa-deck-2026-07-30.png
+                   Shows a presentation living alongside live sources.
+                   Blur private deck titles or other identifiable information.
+              -->
+              <img
+                id="demo-presentation"
+                src="live-app-presenting-roa-deck-2026-07-30.png"
+                alt="ROA presentation interface"
+                class="product-image w-full object-contain hidden"
+                loading="lazy"
+              >
+
+              <div class="absolute top-5 right-5 bg-black/70 backdrop-blur px-3 py-2 text-[9px] tracking-[.15em] uppercase text-white/70">
+                Live product experience
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="lg:col-span-4">
+
+            <div id="demo-copy" class="reveal">
+
+              <span class="eyebrow text-accent" id="demo-number">01 / Canvas</span>
+
+              <h3 class="display-font text-3xl font-semibold mt-6 leading-tight" id="demo-title">
+                See everything.<br>
+                Choose what matters.
+              </h3>
+
+              <p class="text-sm leading-7 text-white/50 mt-6" id="demo-description">
+                Every source appears as a live picture, not a technical label.
+                Drag it onto the wall and arrange the room around your meeting.
+              </p>
+
+              <div class="gold-line mt-8"></div>
+
+              <p class="text-[10px] text-white/35 uppercase tracking-[.18em] mt-5">
+                One surface. One intuitive experience.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Three product principles -->
+      <div class="grid md:grid-cols-3 gap-10 mt-24 pt-12 border-t border-white/10">
+
+        <div class="reveal">
+          <span class="text-accent text-xs">01</span>
+          <h3 class="display-font text-xl font-semibold mt-5">See everything.</h3>
+          <p class="text-sm text-white/45 leading-7 mt-3">
+            Every live source is visible before you choose it.
+          </p>
+        </div>
+
+        <div class="reveal">
+          <span class="text-accent text-xs">02</span>
+          <h3 class="display-font text-xl font-semibold mt-5">Place anything.</h3>
+          <p class="text-sm text-white/45 leading-7 mt-3">
+            Move, resize and arrange content directly on the canvas.
+          </p>
+        </div>
+
+        <div class="reveal">
+          <span class="text-accent text-xs">03</span>
+          <h3 class="display-font text-xl font-semibold mt-5">Run the room.</h3>
+          <p class="text-sm text-white/45 leading-7 mt-3">
+            Adjust the room and its services from the same surface.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================
+       04. INTEGRATION — DARK EDITORIAL
+       ========================================= -->
+
+  <section id="integration" class="bg-[#111210] text-white py-24 md:py-32">
+
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12">
+
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+
+        <div class="lg:col-span-6 reveal">
+
+          <span class="eyebrow text-white/45">03 / Designed to work together</span>
+
+          <h2 class="display-font text-4xl md:text-5xl font-semibold leading-[1.13] tracking-[-.045em] mt-7">
+            Built for the room<br>
+            <span class="text-white/40">you already have.</span>
+          </h2>
+
+          <p class="text-sm leading-8 text-white/55 mt-7 max-w-[470px]">
+            ROA D1 works with the control, sound and conferencing
+            infrastructure already in place. It does not replace the
+            systems the room relies on. It makes them easier to use.
+          </p>
+
+          <a href="#contact"
+             class="inline-flex items-center gap-3 mt-9 text-xs font-semibold uppercase tracking-[.12em] border-b border-white/30 pb-3 hover:border-accent transition">
+            Discuss integration
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </a>
+
+        </div>
+
+        <div class="lg:col-span-6 reveal">
+
+          <div class="grid grid-cols-2 gap-3">
+
+            <div class="bg-[#1D1F1C] border border-white/10 p-7 md:p-10 min-h-[140px] flex flex-col justify-between">
+              <span class="text-[9px] uppercase tracking-[.15em] text-white/40">Control</span>
+              <span class="display-font text-2xl font-semibold">Existing</span>
+              <span class="text-xs text-white/45">Room infrastructure</span>
+            </div>
+
+            <div class="bg-[#1D1F1C] border border-white/10 p-7 md:p-10 min-h-[140px] flex flex-col justify-between">
+              <span class="text-[9px] uppercase tracking-[.15em] text-white/40">Sound</span>
+              <span class="display-font text-2xl font-semibold">Connected</span>
+              <span class="text-xs text-white/45">Audio systems</span>
+            </div>
+
+            <div class="bg-[#1D1F1C] border border-white/10 p-7 md:p-10 min-h-[140px] flex flex-col justify-between">
+              <span class="text-[9px] uppercase tracking-[.15em] text-white/40">Video</span>
+              <span class="display-font text-2xl font-semibold">Unified</span>
+              <span class="text-xs text-white/45">Room sources</span>
+            </div>
+
+            <div class="bg-ink text-white p-7 md:p-10 min-h-[140px] flex flex-col justify-between">
+              <span class="text-[9px] uppercase tracking-[.15em] text-white/40">Experience</span>
+              <span class="display-font text-2xl font-semibold">ROA D1</span>
+              <span class="text-xs text-white/45">One intuitive surface</span>
+            </div>
+
+          </div>
+
+          <p class="text-[9px] text-white/40 mt-4 leading-5">
+            Works with existing control and video infrastructure,
+            including Crestron, Extron and Q-SYS. No partner logos used.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================
+       05. HOSPITALITY — DARK EDITORIAL
+       ========================================= -->
+
+  <section id="hospitality" class="bg-[#151614] text-white py-24 md:py-32">
+
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12">
+
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+
+        <div class="lg:col-span-6 order-2 lg:order-1 reveal">
+
+          <div class="relative overflow-hidden bg-[#1D1F1C] border border-white/10 p-3 md:p-6 shadow-2xl shadow-black/30">
+
+            <!-- IMAGE 06 — SERVICE SCREENSHOT
+                 Use supplied brief asset:
+                 live-app-service-orders-2026-07-30.png
+                 This is the real hospitality ordering screen.
+                 Show the coffee and drinks menu clearly.
+            -->
+            <img
+              src="live-app-service-orders-2026-07-30.png"
+              alt="Hospitality ordering on ROA D1"
+              class="w-full"
+              loading="lazy"
+            >
+
+            <div class="mt-4 inline-block bg-ink/90 border border-white/10 px-5 py-4 shadow-lg">
+              <span class="eyebrow text-accent">Room service</span>
+              <p class="display-font font-semibold text-lg mt-1">A thoughtful detail.</p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="lg:col-span-6 order-1 lg:order-2 reveal">
+
+          <span class="eyebrow text-white/45">04 / The human side</span>
+
+          <h2 class="display-font text-4xl md:text-5xl font-semibold leading-[1.13] tracking-[-.045em] mt-7">
+            Not operators.<br>
+            <span class="text-white/40">Hosts.</span>
+          </h2>
+
+          <p class="text-sm leading-8 text-white/55 mt-7 max-w-[470px]">
+            A well-run meeting is about more than screens and sound.
+            It's about welcoming people, anticipating their needs and
+            creating an environment where conversations can happen.
+          </p>
+
+          <p class="text-sm leading-8 text-white/55 mt-4 max-w-[470px]">
+            With Service, hospitality becomes part of the room experience.
+            Order karak, qahwa, Turkish coffee and more, from the same surface.
+          </p>
+
+          <div class="flex flex-wrap gap-2 mt-8">
+            <span class="border border-white/15 text-white/70 px-4 py-2 text-[10px] uppercase tracking-wide">Karak</span>
+            <span class="border border-white/15 text-white/70 px-4 py-2 text-[10px] uppercase tracking-wide">Qahwa</span>
+            <span class="border border-white/15 text-white/70 px-4 py-2 text-[10px] uppercase tracking-wide">Coffee</span>
+            <span class="border border-white/15 text-white/70 px-4 py-2 text-[10px] uppercase tracking-wide">Refreshments</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================
+       06. PRODUCT FAMILY — DARK
+       ========================================= -->
+
+  <section class="bg-ink text-white py-24 md:py-32">
+
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12">
+
+      <div class="flex flex-col md:flex-row justify-between gap-8 items-start md:items-end reveal">
+
+        <div>
+          <span class="eyebrow text-accent">05 / A family of products</span>
+
+          <h2 class="display-font text-4xl md:text-6xl font-semibold tracking-[-.05em] mt-7">
+            Designed as a system.<br>
+            <span class="text-white/40">Not a one-off.</span>
+          </h2>
+        </div>
+
+        <p class="text-sm leading-7 text-white/45 max-w-[320px]">
+          One identity. A consistent product architecture.
+          A family designed to grow.
+        </p>
+
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-4 mt-16">
+
+        <!-- Product D1 -->
+        <div class="border border-white/20 p-7 md:p-9 hover:bg-white/5 transition reveal">
+
+          <span class="eyebrow text-white/35">ROA / Product 01</span>
+
+          <div class="frame aspect-square flex items-center justify-center mt-8 mb-8 text-white/60">
+            <span class="display-font text-7xl md:text-8xl font-light tracking-[-.07em]">D1</span>
+          </div>
+
+          <div class="flex justify-between items-end">
+            <div>
+              <h3 class="display-font text-xl font-semibold">ROA D1</h3>
+              <p class="text-xs text-white/40 mt-2">The first of the series.</p>
+            </div>
+            <span class="text-[9px] uppercase tracking-widest text-accent">01</span>
+          </div>
+
+        </div>
+
+        <!-- Product D2 -->
+        <div class="border border-white/10 p-7 md:p-9 hover:bg-white/5 transition reveal">
+
+          <span class="eyebrow text-white/35">ROA / Product 02</span>
+
+          <div class="frame aspect-square flex items-center justify-center mt-8 mb-8 text-white/40">
+            <span class="display-font text-7xl md:text-8xl font-light tracking-[-.07em]">D2</span>
+          </div>
+
+          <div class="flex justify-between items-end">
+            <div>
+              <h3 class="display-font text-xl font-semibold">ROA D2</h3>
+              <p class="text-xs text-white/40 mt-2">The series continues.</p>
+            </div>
+            <span class="text-[9px] uppercase tracking-widest text-white/30">02</span>
+          </div>
+
+        </div>
+
+        <!-- Product D10 -->
+        <div class="border border-white/10 p-7 md:p-9 hover:bg-white/5 transition reveal">
+
+          <span class="eyebrow text-white/35">ROA / Product 10</span>
+
+          <div class="frame aspect-square flex items-center justify-center mt-8 mb-8 text-white/40">
+            <span class="display-font text-7xl md:text-8xl font-light tracking-[-.07em]">D10</span>
+          </div>
+
+          <div class="flex justify-between items-end">
+            <div>
+              <h3 class="display-font text-xl font-semibold">ROA D10</h3>
+              <p class="text-xs text-white/40 mt-2">One system. Many possibilities.</p>
+            </div>
+            <span class="text-[9px] uppercase tracking-widest text-white/30">10</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <p class="text-[10px] text-white/30 mt-5">
+        D2 and D10 are illustrative family-system designations, not claims of product availability.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================
+       07. CLOSING HERO — IMAGE LED
+       ========================================= -->
+
+  <section class="relative min-h-[550px] md:min-h-[650px] bg-ink text-white flex items-center overflow-hidden">
+
+    <!-- IMAGE 07 — CLOSING BOARDROOM
+         Search keywords:
+         "luxury modern boardroom panoramic glass windows daylight"
+         "executive meeting room cinematic architectural photography"
+         Choose a different room from the main hero.
+         Wide 16:9, calm, elegant, natural light.
+    -->
+    <img
+      src="closing-boardroom.jpg"
+      alt="An executive meeting room designed for clear conversations"
+      class="cinematic-image absolute inset-0 w-full h-full object-cover"
+      loading="lazy"
+    >
+
+    <div class="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-ink/20"></div>
+
+    <div class="relative z-10 max-w-[1280px] mx-auto w-full px-6 lg:px-12 py-24 reveal">
+
+      <span class="eyebrow text-accent">The ROA experience</span>
+
+      <h2 class="display-font text-4xl md:text-6xl font-semibold leading-[1.1] tracking-[-.05em] mt-7 max-w-[700px]">
+        Let the room<br>
+        do the work.
+      </h2>
+
+      <p class="text-sm text-white/55 leading-7 mt-7 max-w-[400px]">
+        Less time managing technology.
+        More time making every meeting matter.
+      </p>
+
+      <a href="#contact"
+         class="inline-flex items-center gap-4 bg-accent text-ink px-7 py-4 mt-9 text-[10px] uppercase tracking-[.12em] font-semibold hover:bg-white transition">
+        Start a conversation
+        <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================
+       08. CONTACT — MINIMAL
+       ========================================= -->
+
+  <section id="contact" class="bg-[#111210] text-white py-24 md:py-28">
+
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12">
+
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+
+        <div class="reveal">
+          <span class="eyebrow text-white/45">06 / Get in touch</span>
+
+          <h2 class="display-font text-4xl md:text-5xl font-semibold tracking-[-.045em] mt-7">
+            A better room<br>
+            starts here.
+          </h2>
+
+          <p class="text-sm text-white/50 leading-7 mt-6 max-w-[400px]">
+            Discover how ROA D1 brings the room together.
+            Talk to our team about your next executive space.
+          </p>
+        </div>
+
+        <div class="reveal md:pl-10">
+
+          <div class="border-t border-white/15 py-6 flex justify-between items-center">
+            <span class="text-sm">Product</span>
+            <a href="#product" class="text-xs text-white/50 hover:text-white flex items-center gap-2">
+              Explore ROA D1 <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+          <div class="border-t border-b border-white/15 py-6 flex justify-between items-center">
+            <span class="text-sm">Experience</span>
+            <a href="#experience" class="text-xs text-white/50 hover:text-white flex items-center gap-2">
+              See the experience <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+          <!-- Replace the email placeholder in the JavaScript before deployment.
+               Use only an approved ROA contact address. -->
+          <button id="contactButton"
+                  class="w-full flex items-center justify-between bg-accent text-ink px-6 py-5 mt-7 text-xs uppercase tracking-[.12em] hover:bg-white transition">
+            Contact ROA
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================
+       FOOTER
+       ========================================= -->
+
+  <footer class="bg-ink text-white">
+
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-12">
+
+      <div class="flex flex-col md:flex-row justify-between gap-10">
+
+        <div>
+          <a href="#home" class="display-font text-3xl font-extrabold tracking-[.18em]">
+           <a href="#home" class="flex items-center text-white" aria-label="ROA Solutions home">
+        <img src="logo%20roa.png"
+             alt="ROA Solutions"
+             class="h-16 w-auto object-contain">
+      </a>
+          </a>
+         <!-- <p class="text-[9px] text-white/35 tracking-[.14em] mt-3 uppercase">
+            Room-human interface hardware & systems
+          </p>-->
+        </div>
+
+        <div class="flex flex-wrap gap-8 text-[11px] text-white/50">
+          <a href="#product" class="hover:text-white transition">Product</a>
+          <a href="#experience" class="hover:text-white transition">Experience</a>
+          <a href="#integration" class="hover:text-white transition">Integration</a>
+          <a href="#hospitality" class="hover:text-white transition">Hospitality</a>
+        </div>
+
+      </div>
+
+      <div class="border-t border-white/10 mt-12 pt-7 flex flex-col sm:flex-row justify-between gap-4 text-[9px] text-white/30">
+        <span>© 2026 ROA Solutions. All rights reserved.</span>
+        <span>Beautifully Unnoticeable</span>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- =========================================
+       JAVASCRIPT — INTERACTIONS
+       ========================================= -->
+
+  <script>
+    // Initialize icons
+    lucide.createIcons();
+
+
+    // MOBILE NAVIGATION
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuToggle.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+
+      menuToggle.setAttribute('aria-expanded', String(!isHidden));
+
+      menuToggle.innerHTML = isHidden
+        ? '<i data-lucide="menu" class="w-6 h-6"></i>'
+        : '<i data-lucide="x" class="w-6 h-6"></i>';
+
+      lucide.createIcons();
+    });
+
+    // Close mobile navigation after selecting a section
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
+        lucide.createIcons();
+      });
+    });
+
+
+    // PRODUCT EXPERIENCE TABS
+    const productData = {
+      canvas: {
+        number: '01 / Canvas',
+        title: 'See everything.<br>Choose what matters.',
+        description: 'Every source appears as a live picture, not a technical label. Drag it onto the wall and arrange the room around your meeting.'
+      },
+      service: {
+        number: '02 / Service',
+        title: 'Hospitality.<br>Built into the room.',
+        description: 'Order karak, qahwa, Turkish coffee and refreshments directly from the same intuitive surface.'
+      },
+      presentation: {
+        number: '03 / Presentation',
+        title: 'Your content.<br>Right where it belongs.',
+        description: 'Bring presentations into the room and compose them alongside live sources on the video wall.'
+      }
+    };
+
+    const tabs = document.querySelectorAll('.product-tab');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+
+        const selected = tab.dataset.tab;
+        const data = productData[selected];
+
+        // Update active tab appearance
+        tabs.forEach(item => {
+          item.classList.remove('active');
+          item.classList.add('text-white/60');
+          item.setAttribute('aria-selected', 'false');
+        });
+
+        tab.classList.add('active');
+        tab.classList.remove('text-white/60');
+        tab.setAttribute('aria-selected', 'true');
+
+        // Update product images
+        document.querySelectorAll('.product-image').forEach(image => {
+          image.classList.add('hidden');
+        });
+
+        document.getElementById('demo-' + selected).classList.remove('hidden');
+
+        // Update descriptive content
+        document.getElementById('demo-number').textContent = data.number;
+        document.getElementById('demo-title').innerHTML = data.title;
+        document.getElementById('demo-description').textContent = data.description;
+
+      });
+    });
+
+
+    // SCROLL REVEAL ANIMATION
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12
+    });
+
+    document.querySelectorAll('.reveal').forEach(element => {
+      observer.observe(element);
+    });
+
+
+    // CONTACT ACTION
+    // Replace with an approved ROA email address if one is supplied.
+    const CONTACT_EMAIL = 'REPLACE_WITH_APPROVED_ROA_EMAIL';
+
+    document.getElementById('contactButton').addEventListener('click', () => {
+
+      if (!CONTACT_EMAIL.includes('@') ||
+          CONTACT_EMAIL === 'REPLACE_WITH_APPROVED_ROA_EMAIL') {
+        alert('Please add the approved ROA contact email before publishing.');
+        return;
+      }
+
+      const subject = encodeURIComponent('ROA D1 — Product enquiry');
+      const body = encodeURIComponent(
+        'Hello ROA team,\n\nI would like to learn more about ROA D1.\n\n'
+      );
+
+      window.location.href =
+        `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    });
+
+  </script>
+
+</body>
+</html>
